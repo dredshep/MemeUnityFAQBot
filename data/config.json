@@ -1,0 +1,13 @@
+{
+  "admins": [
+    1615985312
+  ],
+  "commands": {
+    "/my_custom_command": {
+      "response": "The text you want me to reply with.\n\nIt can be multiline, or be formatted with <strong>html</strong>.",
+      "description": "Command description"
+    }
+  },
+  "/my_custom_command": null,
+  "editors": []
+}
