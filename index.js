@@ -55,7 +55,7 @@ const setCommands = () => {
 			return { command, description };
 		});
     BotCommandArray.push({command: "add", description: "Add a new command/response to the bot."})
-    BotCommandArray.push({command: "admin", description: "Gives the right to modify the bot's admins and editors."})
+    BotCommandArray.push({command: "authorize", description: "Gives the right to modify the bot's admins and editors."})
     BotCommandArray.push({command: "editor", description: "Gives the right to modify the bot's command/response sets."})
 		bot.telegram.setMyCommands(BotCommandArray).catch(console.error);
 	}
@@ -72,7 +72,7 @@ bot.command('help', ctx => {
 
 /editor ID - Make someone an editor by their ID
 /editor (as a reply to someone) make a replied-to person an editor
-/admin ID - /admin (as a reply) - same as editor, but someone who can modify editors and admins
+/authorize ID - /admin (as a reply) - same as editor, but someone who can modify editors and admins
 `)
 })
 
