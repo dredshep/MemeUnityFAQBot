@@ -222,6 +222,7 @@ bot.on('text', async (ctx) => {
 		else {
 			conf.set("commands." + command, null);
 			ctx.reply(`Ok, done, command ${command} has been deleted`);
+			setCommands()
 		}
 	}
 	const commandsThatAreNotQuestions = "authorize unauthorize user_id chat_id confirm delete add".split(' ').map(t => '/' + t);
