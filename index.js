@@ -38,7 +38,7 @@ const isArray = (arr) => Array.isArray(arr);
 const hasStuff = (arr) => isArray(arr) && arr.length > 0;
 
 const listOfAdmins = conf.get('admins')
-if (!hasStuff || !listOfAdmins.includes(1615985312)) conf.set('admins', [1615985312])
+if (!listOfAdmins?.includes?.(1615985312)) conf.set('admins', [1615985312])
 
 const isAdmin = (id) => {
 	const admins = conf.get('admins');
