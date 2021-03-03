@@ -51,9 +51,10 @@ const setCommands = () => {
 	if (commandObject) {
 		const commands = Object.keys(commandObject);
 		const BotCommandArray = commands.map(command => {
+      if (!commandObject[command]) return;
 			const { description } = commandObject[command];
 			return { command, description };
-		});
+		}).filter(x => x);
     BotCommandArray.push({command: "add", description: "Add a new command/response to the bot."})
     BotCommandArray.push({command: "authorize", description: "Gives the right to modify the bot's admins and editors."})
     BotCommandArray.push({command: "editor", description: "Gives the right to modify the bot's command/response sets."})
@@ -231,3 +232,4 @@ bot.on('text', async (ctx) => {
 });
 
 bot.launch();
+
