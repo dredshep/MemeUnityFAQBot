@@ -51,9 +51,10 @@ const setCommands = () => {
 	if (commandObject) {
 		const commands = Object.keys(commandObject);
 		const BotCommandArray = commands.map(command => {
-      if (!commandObject[command]) return;
-			const { description } = commandObject[command];
-			return { command, description };
+      if (commandObject?.[command] !== null) {
+				const { description } = commandObject[command];
+				return { command, description };
+			}
 		}).filter(x => x);
     BotCommandArray.push({command: "help", description: "Get a list of all available commands."})
     BotCommandArray.push({command: "add", description: "Add a new command/response to the bot."})
@@ -224,7 +225,7 @@ bot.on('text', async (ctx) => {
 	if (text.startsWith('/') && !commandIsNotAQuestion) {
 		const command = text.match(/^\/(.+)/)?.[1];
 		if (command) {
-			const question = conf.get("commands./" + command);
+			const question = conf.get("commands./" + command.split('@')[0]);
 			if (question) {
 				ctx.replyWithHTML(question.response);
 			}

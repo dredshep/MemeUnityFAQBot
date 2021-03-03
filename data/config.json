@@ -3,9 +3,14 @@
     1615985312
   ],
   "commands": {
-    "/my_custom_command": {
-      "response": "The text you want me to reply with.\n\nIt can be multiline, or be formatted with <strong>html</strong>.",
-      "description": "Command description"
+    "/my_custom_command": null,
+    "/example_question": {
+      "response": "It is fun stuff, <a href=\"https://google.com\">link to google</a> with HTML. Coolio!",
+      "description": "This is an example"
+    },
+    "/another_test": {
+      "response": "Ok now it's done",
+      "description": "super success"
     }
   },
   "/my_custom_command": null,
