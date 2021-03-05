@@ -1,18 +1,84 @@
 {
+  "editors": [
+    242604020
+  ],
   "admins": [
-    1615985312
+    1615985312,
+    1349489797,
+    1134277006
   ],
   "commands": {
-    "/my_custom_command": null,
-    "/example_question": {
-      "response": "It is fun stuff, <a href=\"https://google.com\">link to google</a> with HTML. Coolio!",
-      "description": "This is an example"
+    "/presale": {
+      "response": "Presale is over. Public sale starts on March 15, 2021.\n\nRemember that no one here will request that you send funds on PM. Beware scammers.",
+      "description": "Presale is over. Public sale starts on March 15, 2021"
     },
-    "/another_test": {
-      "response": "Ok now it's done",
-      "description": "super success"
+    "/when_public_sale": {
+      "response": "The public sale starts at March 15, 2021",
+      "description": "Tells you the date when the public sale starts"
+    },
+    "/presale_minimum": {
+      "response": "The minimum amount required to participate in this presale is $500 USD+ in ETH/USDT (meaning you'd receive 6,250+ $DANK tokens)",
+      "description": "What's the minimum amount required to participate in the presale?"
+    },
+    "/when_public_sale_end": {
+      "response": "<strong>When does the presale end?</strong>\n\nOnly ~$10k USD worth of $DANK tokens remains in this presale round. The presale will end when that amount reaches 0.",
+      "description": "When does the presale end?"
+    },
+    "/soul": {
+      "response": "<strong>Can I still participate with $SOUL tokens?</strong>\n\nUnfortunately no, as we've closed our $DANK allocation for $SOUL tokens. We sold a little more than 1.3 million $DANK, surpassing our softcap, and we're burning the remaining ~700k $DANK.",
+      "description": "Can I still participate with $SOUL tokens?"
+    },
+    "/why_two_tokens": {
+      "response": "<strong>Why two tokens?</strong>\n\n$DANK is in limited supply compared to $MUU, and will run out much faster. With $MUU, we can sustain a powerful economy for staking, and explore a vast potential for the token as we move onwards with our roadmap.",
+      "description": "Why two tokens?"
+    },
+    "/when_muu_sale": {
+      "response": "<strong>When will $MUU be listed and at what price?</strong>\n\nThere are currently 2 billion $MUU tokens, and we're likely to list $MUU for $0.01 when the time comes further down the road. The priority for now is to list $DANK.",
+      "description": "When will $MUU be listed and at what price?"
+    },
+    "/can_i_buy_again": {
+      "response": "<strong>I've already purchased using $ETH/USDT. Can I make another purchase?</strong>\n\nYes, but you'll have to contact @eysidimus directly, as our form process unfortunately doesn't allow you to submit a 2nd submission.",
+      "description": "I've already purchased using $ETH/USDT. Can I make another purchase?"
+    },
+    "/mucitadel": {
+      "response": "<strong>What is MU Citadel?</strong>\n\nMU Citadel is our NFT marketplace which we plan to launch this March.",
+      "description": "What is MU Citadel?"
+    },
+    "/partnerships": {
+      "response": "<strong>What partnership plans does the team have?</strong>\n\nWe currently have secured some partnerships",
+      "description": "What partnership plans does the team have?"
+    },
+    "/exchanges": {
+      "response": "<strong>Are there plans to list DANK on other exchanges asides Uniswap? </strong>\n\nWe do have plans to list on other DEX/CEX after Uniswap. Our plan is to welcome suggestions from the community in our final selection process, as far as exchanges of choice are concerned.",
+      "description": "Are there plans to list DANK on other exchanges asides Uniswap? "
+    },
+    "/team": {
+      "response": "<strong>Where can I learn about the MemeUnity team?</strong>\n\n https://memeunity.com/team",
+      "description": "Where can I learn about the MemeUnity team?"
+    },
+    "/public_sale_price": {
+      "response": "<strong>How much will $DANK tokens cost in the public sale?</strong>\n\n$DANK tokens will be sold at $0.10 each.",
+      "description": "How much will $DANK tokens cost in the public sale?"
+    },
+    "/location": {
+      "response": "<strong>Where is this project based?</strong>\n\nMU is registered in the United States of America in the state of Delaware; however, the team members are based in different parts of the world.",
+      "description": "Where is this project based?"
+    },
+    "/goal": {
+      "response": "<strong>What is this project about?</strong>\n\nWe're trying to build the world's first decentralized social network based on memes. A place where people can feel both secure and happy, and we want to challenge the status quo of traditional social media by offering an alternative that works for everyone: memeunity.",
+      "description": "What is this project about?"
+    },
+    "/when_presale_end": {
+      "response": "This $DANK presale will end once our $ETH allocation is completely sold out (only about $13k USD remains in $DANK tokens currently).",
+      "description": "When the presale ends"
+    },
+    "/market_launch_price": {
+      "response": "The price of $DANK will be $0.11 when launched on the open market.",
+      "description": "Price of $DANK when released to open market."
+    },
+    "/uniswap_listing_date": {
+      "response": "$DANK is expected to be listed on Uniswap on 3/15/21.",
+      "description": "The expected date for $DANK to be listed on Uniswap."
     }
-  },
-  "/my_custom_command": null,
-  "editors": []
+  }
 }
