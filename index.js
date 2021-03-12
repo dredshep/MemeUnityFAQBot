@@ -1,7 +1,12 @@
 const { Telegraf } = require('telegraf');
+const Tgf = require('tgfancy')
 const conf = require('sharon-storage');
-const { token } = require('./secrets.json');
-const bot = new Telegraf(token);
+const { beta } = require('./secrets.json');
+const bot = new Telegraf(beta);
+const tgfbot = new Tgf(beta)
+
+bot.telegram.getMe().then(console.log)
+
 bot.command('add', ctx => {
 	ctx.reply(`Send a reply to >this message< with the following structure:
 
@@ -10,9 +15,30 @@ The text you want me to reply with.
 
 It can be multiline, or be formatted with html.`);
 });
+
+bot.command('all', ctx => {
+	const commandsObject = conf.get('commands')
+	const commandList = Object.keys(commandsObject)
+	const commandListString = commandList.reduce((str, command) => {
+		const commandObject = commandsObject[command]
+		if (commandObject) {
+			const { response, description } = commandObject
+			const text = `${command} - ${description}\n${response}`
+			return str + text + "\n\n"
+		} else return str
+	}, "").trim()
+	tgfbot.sendMessage(ctx.chat.id, commandListString, {disable_web_page_preview: true})
+		.then(() => console.log('/all'))
+		.catch(console.error)
+})
+
 const validateText = (text) => text.startsWith('/') &&
 	text.split(' ')?.[1] === "-" &&
 	text.split('\n').length > 1;
+
+const validateCommand = command =>
+	command.startsWith('/') && /^[a-z0-9_]+$/i.test(command.slice(1))
+	
 const addResponse = (text, confirmed) => {
 	const pushIt = (commandObject) => {
 		const stringified = JSON.stringify(commandObject, null, 2);
@@ -21,7 +47,9 @@ const addResponse = (text, confirmed) => {
 	};
 	if (validateText(text)) {
 		const commandLine = text.split(' - ');
-		const command = commandLine[0];
+		const _command = commandLine[0];
+		if (!validateCommand(_command)) return {ok:false, invalid: true, reason: "command", _command}
+		const command = _command.toLowerCase();
 		const secondPart = commandLine[1].split('\n');
 		const description = secondPart[0];
 		const response = secondPart.slice(1).join('\n');
@@ -32,7 +60,7 @@ const addResponse = (text, confirmed) => {
 		pushIt(commandObject);
 		return { ok: true, command };
 	}
-	return { ok: false, invalid: true };
+	return { ok: false, invalid: true, reason: "description" };
 };
 const isArray = (arr) => Array.isArray(arr);
 const hasStuff = (arr) => isArray(arr) && arr.length > 0;
@@ -54,9 +82,10 @@ const setCommands = () => {
 	const commandObject = conf.get('commands');
 	if (commandObject) {
 		const commands = Object.keys(commandObject);
-		const BotCommandArray = commands.map(command => {
-      if (commandObject?.[command] !== null) {
-				const { description } = commandObject[command];
+		const BotCommandArray = commands.map(_command => {
+      if (commandObject?.[_command] !== null) {
+				const { description } = commandObject[_command];
+				const command = _command.slice(1)
 				return { command, description };
 			}
 		}).filter(x => x);
@@ -64,7 +93,11 @@ const setCommands = () => {
     BotCommandArray.push({command: "add", description: "Add a new command/response to the bot."})
     BotCommandArray.push({command: "authorize", description: "Gives the right to modify the bot's admins and editors."})
     BotCommandArray.push({command: "editor", description: "Gives the right to modify the bot's command/response sets."})
-		bot.telegram.setMyCommands(BotCommandArray).catch(console.error);
+		bot.telegram.setMyCommands(BotCommandArray)
+			.catch( e => {
+				console.log(BotCommandArray)
+				console.error(e)
+			});
 	}
 };
 setCommands()
@@ -196,6 +229,9 @@ bot.on('text', async (ctx) => {
 				const add = addResponse(text, false);
 				if (!add.ok && add.exists)
 					ctx.reply(`The command ${add.command} already exists. To confirm that you would like to replace the command's response, please reply /confirm to >your message< that contains the command/response to be added.`);
+				else if (!add.ok && add.reason === "command") {
+					ctx.reply("Command invalid. Make sure it only contains English letters, digits and underscore.")
+				}
 				else if (add.ok) ctx.reply(`Alright, added that response. If you want to remove this command in the future, just send me this command: /delete_${add.command?.slice(1)}`);
 			}
 			else {
@@ -210,7 +246,7 @@ bot.on('text', async (ctx) => {
 			ctx.reply(`Alright, added that response. If you want to remove this command in the future, just send me this command: /delete_${add.command?.slice(1)}`);
 		}
 		else {
-			ctx.reply("The message you replied to doesn't seem to be valid. :( Make sure your message's first line is /some_command - some description, and that the message has more than one line!");
+			ctx.reply("The message you replied to doesn't seem to be valid. :( Make sure your message's first line is /some_command - some description, and that the message has more than one line! Server response:\n" + JSON.stringify(add, null, 2));
 		}
 	}
 	if (authorized && text.match(/^\/delete_.+/)) {
@@ -225,7 +261,7 @@ bot.on('text', async (ctx) => {
 			setCommands()
 		}
 	}
-	const commandsThatAreNotQuestions = "authorize unauthorize user_id chat_id confirm delete add".split(' ').map(t => '/' + t);
+	const commandsThatAreNotQuestions = "authorize unauthorize user_id chat_id confirm delete add all".split(' ').map(t => '/' + t);
 	const commandIsNotAQuestion = commandsThatAreNotQuestions.filter(t => text.startsWith(t)).length > 0;
 	if (text.startsWith('/') && !commandIsNotAQuestion) {
 		const command = text.match(/^\/(.+)/)?.[1];
