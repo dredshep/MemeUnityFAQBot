@@ -9,11 +9,11 @@
   ],
   "commands": {
     "/presale": {
-      "response": "Presale is over. Public sale starts on March 15, 2021.\n\nRemember that no one here will request that you send funds on PM. Beware scammers.",
+      "response": "Presale is over. Public sale starts on March 8, 2021.\n\nRemember that no one here will request that you send funds on PM. Beware scammers.",
       "description": "Presale is over. Public sale starts on March 15, 2021"
     },
     "/when_public_sale": {
-      "response": "The public sale starts at March 15, 2021",
+      "response": "The public sale starts on March 8, 2021",
       "description": "Tells you the date when the public sale starts"
     },
     "/presale_minimum": {
@@ -79,6 +79,19 @@
     "/uniswap_listing_date": {
       "response": "$DANK is expected to be listed on Uniswap on 3/15/21.",
       "description": "The expected date for $DANK to be listed on Uniswap."
+    },
+    "/public_sale_address": null,
+    "/public_sale_requirements": {
+      "response": "All you'll need to participate in our $DANK public token sale is MetaMask with Ethereum loaded on it! There's no whitelisting process this time around!",
+      "description": "Requirements for participating in the public $DANK sale."
+    },
+    "/claim_my_DANK_tokens": {
+      "response": "After you've purchased DANK tokens through our public sale website, your tokens will be able to be claimed on that same page once the sale ends (on March 14th). Simply visit the page once the sale is over, make sure you're logged in to the same MetaMask wallet that you participated with, and you should see a 'claim' button in the top right corner of the page.",
+      "description": "How do I claim my DANK tokens after I've paid?"
+    },
+    "/when_moon": {
+      "response": "When you buy more $DANK tokens! Uniswap listing coming 3/15/21 🥳",
+      "description": "When will $DANK MOON?!?!"
     }
   }
 }
