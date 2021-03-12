@@ -92,10 +92,6 @@
     "/when_moon": {
       "response": "When you buy more $DANK tokens! Uniswap listing coming 3/15/21 🥳",
       "description": "When will $DANK MOON?!?!"
-    },
-    "/test_caps": {
-      "response": "Content",
-      "description": "Desc"
     }
   }
 }

@@ -1,9 +1,9 @@
 const { Telegraf } = require('telegraf');
 const Tgf = require('tgfancy')
 const conf = require('sharon-storage');
-const { beta } = require('./secrets.json');
-const bot = new Telegraf(beta);
-const tgfbot = new Tgf(beta)
+const { token } = require('./secrets.json');
+const bot = new Telegraf(token);
+const tgfbot = new Tgf(token)
 
 bot.telegram.getMe().then(console.log)
 
